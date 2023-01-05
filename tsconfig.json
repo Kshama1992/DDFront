@@ -1,0 +1,55 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es6",
+    "module": "esnext",
+    "lib": [
+      "es5",
+      "es6",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "baseUrl": "./src",
+    "sourceMap": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "strictPropertyInitialization": false,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "noStrictGenericChecks": true,
+    "paths": {
+      "@pages/*": ["./pages/*"],
+      "@context/*": ["./core/context/*"],
+      "@helpers/*": ["./core/helpers/*"],
+      "@service/*": ["./core/service/*"],
+      "@core/*": ["./core/*"],
+      "@forms/*": ["./components/forms/*"],
+      "@shared-components/*": ["./components/shared/*"],
+    },
+    "noEmit": true
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "razzle.config.js"
+  ],
+  "include": [
+    "src"
+  ]
+
+}

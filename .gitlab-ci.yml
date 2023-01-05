@@ -1,0 +1,57 @@
+image: node:latest
+
+dev2:
+  stage: deploy
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  script:
+    - cp /home/ubuntu/.env ./
+#    - ./sh/init-letsencrypt.sh # initial script to create certs
+    - sudo docker-compose up -d --build front
+    - sudo docker system prune -af --volumes
+    - sudo docker-compose restart
+  environment:
+    name: dev2
+    url: https://dev2.drop-desk.com/
+  #only:
+   # - cdk-main
+  tags:
+    - front-dev2
+
+
+
+# staging:
+#   stage: deploy
+#   script:
+#     - cp /home/ubuntu/.env ./
+#     - cp /home/ubuntu/docker-compose.override.yml ./
+#     - cp /home/ubuntu/default.conf.template ./data/nginx/
+#     - sudo docker-compose up -d --build nginx
+#     - sudo docker-compose up -d --build front
+#     - sudo docker system prune -af --volumes
+#     - sudo docker-compose restart
+#   environment:
+#     name: staging
+#     url: https://beta.drop-desk.com/
+#   only:
+#     - tags
+#   when: manual
+#   tags:
+#     - front-staging
+
+# production:
+#   stage: deploy
+#   script:
+#     - cp /home/ubuntu/.env ./
+#     #    - ./sh/init-letsencrypt.sh # initial script to create certs
+#     - sudo docker-compose up -d --build front
+#     - sudo docker system prune -af --volumes
+#     - sudo docker-compose restart
+#   environment:
+#     name: production
+#     url: https://app.drop-desk.com/
+#   only:
+#     - tags
+#   when: manual
+#   tags:
+#     - front-prod
